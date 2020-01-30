@@ -1,0 +1,9 @@
+[Unit]
+Description=php exporter Server
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStart=/usr/local/bin/php_exporter
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -eux -o pipefail
+
+# pull the image before so we dont first remove the container and then pull
+docker pull hipages/php-fpm_exporter:"{{ php_exporter_version }}"
+
+docker rm -f -v php_exporter || :
+
+docker run --net=host --name=php_exporter \
+	 -e PHP_FPM_SCRAPE_URI="{{ php_server_uri }}" \
+	  hipages/php-fpm_exporter

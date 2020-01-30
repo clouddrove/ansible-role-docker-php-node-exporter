@@ -1,0 +1,20 @@
+---
+# handlers for ansible-role-docker-php_exporter
+
+- name: restart php_exporter
+  service:
+    name: php_exporter
+    state: restarted
+    enabled: true
+
+- name: start php_exporter
+  service:
+    name: php_exporter
+    state: started
+    enabled: true
+
+- name: reload php_exporter
+  service:
+    name: php_exporter
+    state: reloaded
+    enabled: true

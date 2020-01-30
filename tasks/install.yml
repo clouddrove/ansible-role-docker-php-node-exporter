@@ -1,0 +1,32 @@
+---
+
+- name: copy php exporter script
+  template:
+    src: "php_exporter"
+    dest: /usr/local/bin/php_exporter
+    mode: 0755
+    owner: root
+    group: root
+
+- name: copy php exporter script
+  template:
+    src: "php_exporter.service"
+    dest: /etc/systemd/system/php_exporter.service
+    mode: 0644
+    owner: root
+    group: root
+
+- name: restart php exporter service is restarted
+  service:
+    name: php_exporter
+    state: restarted
+  changed_when: false
+
+- name: wait for php exporter to become ready
+  wait_for:
+    host: "{{ php_exporter_server_bind }}"
+    port: "{{ php_exporter_server_port }}"
+    state: started
+    delay: 5
+    connect_timeout: 15
+    timeout: 300

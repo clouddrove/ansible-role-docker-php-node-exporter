@@ -1,0 +1,8 @@
+---
+
+# Networking/connection options
+php_exporter_server_port: 9253
+php_exporter_server_bind: 0.0.0.0
+
+php_exporter_version: 1.0.0
+php_server_uri: "tcp://{{ PrivateIp }}:9000/www-php71-status"
